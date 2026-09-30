@@ -1,3 +1,15 @@
+<?php
+function comprobarNumero(int $numero){
+    if($numero === 0){
+        return "es cero";
+    }
+    if ($numero < 0){
+        return "$numero es menor que 0";
+    }
+    return "$numero es mayor que 0";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,30 +17,19 @@
     <title>Ejercicio 6: Positivo, Negativo o Cero</title>
 </head>
 <body>
-
-    <h2>Comprobar número</h2>
-
-    <form method="POST" action="">
-        <label for="numero">Introduce un número:</label>
-        <input type="number" step="any" id="numero" name="numero" required>
-        <button type="submit" name="enviar">Enviar</button>
+    <form action="" method="post">
+        <label for="numero">Introduzca un numero</label>
+        <input type="text" name="num">
+        <button type="submit">Comprobar</button>
     </form>
-
-    <br>
-
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['numero'])) {
-        $numero = (float) $_POST['numero'];
-
-        if ($numero > 0) {
-            echo "El número <strong>$numero</strong> es <strong>positivo</strong>.";
-        } elseif ($numero < 0) {
-            echo "El número <strong>$numero</strong> es <strong>negativo</strong>.";
-        } else {
-            echo "El número introducido es <strong>cero</strong>.";
-        }
-    }
-    ?>
-
+    
+    <div class="respuesta">
+        <?php
+            $numero = $_POST["num"] ?? "";
+            if (is_numeric($numero)) {
+                echo comprobarNumero($numero);
+            }
+        ?>
+    </div>
 </body>
 </html>
