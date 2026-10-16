@@ -16,18 +16,22 @@ class Persona
         return $this->nombre;
     }
 
-    public function setNombre(string $nombre): void
+    public function setNombre(string $nombre): Persona
     {
         $this->nombre = $nombre;
+        return $this;
     }
 
     public function getEdad(): int
     {
+        
         return $this->edad;
     }
 
-    public function setEdad(int $edad): void
+    public function setEdad(int $edad):Persona
     {
+        
         $this->edad = $edad;
+        return $this;
     }
 }

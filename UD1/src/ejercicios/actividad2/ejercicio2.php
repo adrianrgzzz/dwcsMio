@@ -1,9 +1,32 @@
 <?php
 
 class Persona
+/**
+ * geters y seters con hooks
+ */
 {
-    private string $nombre;
-    private int $edad;
+    public string $nombre{
+        get{
+            error_log("Accedo a nombre y puedo hacer otras cosas");
+            return $this->nombre;
+        }
+
+        set(string $valor){
+            error_log("Modifico nombre y puedo hacer otras cosas");
+            $this->nombre=$valor;
+        }
+    }
+    public int $edad{
+        get=> $this->edad;
+
+        set(int $edad){
+            if($edad<0){
+                throw new Exception("La edad no puede ser menor a 0");
+            }
+            $this->edad = $edad;
+
+        }
+    }
 
     public function __construct(string $nombre, int $edad)
     {
@@ -11,28 +34,30 @@ class Persona
         $this->setEdad($edad);
     }
 
-    public function getNombre(): string
-    {
-        return $this->nombre;
-    }
+   // public function getNombre(): string
+    //{
+      //  return $this->nombre;
+    // }
 
-    public function setNombre(string $nombre): void
-    {
-        $this->nombre = $nombre;
-    }
+    // public function setNombre(string $nombre): Persona
+    // {
+    //     $this->nombre = $nombre;
+    //     return $this;
+    // }
 
-    public function getEdad(): int
-    {
-        return $this->edad;
-    }
+    // public function getEdad(): int
+    // {
+    //     return $this->edad;
+    // }
 
-    public function setEdad(int $edad): void
-    {
-        if ($edad < 0) {
-            throw new InvalidArgumentException("La edad debe ser un número positivo.");
-        }
-        $this->edad = $edad;
-    }
+    // public function setEdad(int $edad): Persona
+    // {
+    //     if ($edad <=0) {
+    //         throw new InvalidArgumentException("La edad debe ser un número positivo.");
+    //     }
+    //     $this->edad = $edad;
+    //     return $this;
+    // }
 
     public function esMayorDeEdad(): bool
     {
@@ -41,11 +66,8 @@ class Persona
 }
 
 // Prueba rápida
-$persona = new Persona("Adrián", 20);
+$pepe = new Persona("Pepe", 30);
 
-echo $persona->getNombre() . " tiene " . $persona->getEdad() . " años.<br>";
-echo "¿Es mayor de edad?: " . ($persona->esMayorDeEdad() ? "Sí" : "No") . "<br>";
+var_dump($pepe);
 
-$persona->setEdad(-16);
-echo "Nueva edad: " . $persona->getEdad() . "<br>";
-echo "¿Es mayor de edad?: " . ($persona->esMayorDeEdad() ? "Sí" : "No");
+$pepe->nombre;
